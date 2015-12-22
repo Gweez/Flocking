@@ -171,12 +171,11 @@ namespace NewFlocking.Things
             else
             {
                 // Draws thing velocity
-                /*
-                GL.Begin(BeginMode.Lines);
-                GL.Vertex3(0, 0, 0);
-                GL.Vertex3(velocity.X, velocity.Y, velocity.Z);
-                GL.End();
-                */
+                //GL.Begin(BeginMode.Lines);
+                //GL.Vertex3(0, 0, 0);
+                //GL.Vertex3(velocity.X, velocity.Y, velocity.Z);
+                //GL.End();
+                
                 Quaternion rotationQuat = DrawUtils.RotationBetweenVectors(new Vector3(0,0,1), new Vector3(velocity));
 
                 Matrix4 rotation = DrawUtils.CreateFromQuaternion(rotationQuat);

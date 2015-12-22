@@ -33,7 +33,7 @@ namespace NewFlocking.Things.LivingThings
 
             maxHeight = 60f;
             maxAccel = 70f;
-            maxSpeed = 30.0f;
+            maxSpeed = 35.0f;
             minFlightSpeed = 8f;
             minSpeed = 8f;
 

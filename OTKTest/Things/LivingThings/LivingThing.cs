@@ -28,6 +28,46 @@ namespace NewFlocking.Things.LivingThings
         protected Relaxed _relaxState;
         #endregion
 
+        #region Public Properties
+
+        public bool isAfraid
+        {
+            get
+            {
+                if (_fearState != null)
+                {
+                    if (states.Contains(_fearState))
+                    {
+                        return true;
+                    }
+
+                    _fearState = null;
+                }
+
+                return false;
+            }
+        }
+
+        public bool isRelaxed
+        {
+            get
+            {
+                if (_relaxState != null)
+                {
+                    if (states.Contains(_relaxState))
+                    {
+                        return true;
+                    }
+
+                    _relaxState = null;
+                }
+
+                return false;
+            }
+        }
+
+        #endregion
+
         #region Constructors
         public LivingThing(World aWorld) : base(aWorld) { }
         public LivingThing(World aWorld, Vector3 startPoint) : base(aWorld, startPoint) { }
@@ -158,11 +198,6 @@ namespace NewFlocking.Things.LivingThings
         {
             Vector3 wander = new Vector3(0, 0, 0);
 
-            if (wander.Length > 0)
-            {
-                return wander;
-            }
-
             if (rand.Next(100 + id) % 4 != 0)
             {
                 // don't change course
@@ -170,7 +205,6 @@ namespace NewFlocking.Things.LivingThings
             }
 
             wander.X = rand.Next(100 + id) % 5;
-            wander.X *= 0.25f;
             if (rand.Next(100 + id) % 4 == 0)
             {
                 // reverse X direction
@@ -189,7 +223,6 @@ namespace NewFlocking.Things.LivingThings
             }
 
             wander.Z = rand.Next(100 + id) % 5;
-            wander.Z *= 0.25f;
             if (rand.Next(100 + id) % 4 == 0)
             {
                 // reverse Z direction
@@ -232,14 +265,14 @@ namespace NewFlocking.Things.LivingThings
         }
 
         /// <summary>
-        /// If things is going over 2/3 of max velocity function
+        /// If things is going over 1/2 of max velocity function
         /// returns a vector for a decrease to that speed.
         /// </summary>
         protected Vector3 chill()
         {
             Vector3 chill = new Vector3(0, 0, 0);
 
-            if (velocity.LengthFast > maxSpeed * 2f/3f)
+            if (velocity.LengthFast > maxSpeed * 0.5f)
             {
                 chill = velocity / -3f;
             }

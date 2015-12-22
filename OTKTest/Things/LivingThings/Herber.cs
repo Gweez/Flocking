@@ -21,7 +21,7 @@ namespace NewFlocking.Things.LivingThings
     class Herber : LivingThing
     {
         private const int FEAR_TTL = 175;
-        private const float RELAX_SPEED = 2;
+        private const float RELAX_SPEED = 1.75f;
         
         private static int firstHerberId = -1;
 
@@ -91,8 +91,37 @@ namespace NewFlocking.Things.LivingThings
                 string foo = "bar";
             }
 
+
             // avoid nasty things
             accel += (flee() * fleeMultiplier);
+
+            if (!isAfraid)
+            {
+
+                if (!isRelaxed)
+                {
+                    if (velocity.Length < RELAX_SPEED)
+                    {
+                        _relaxState = new Relaxed(this.world, this);
+                        states.Add(_relaxState);
+                    }
+                } 
+                else // relaxed 
+                { 
+                    // flocking instinct reduced
+                    alignmentMultiplier *= 0.25f;
+                    cohesionMultiplier *= 0.25f;
+                }
+            }
+            else // frightened
+            {
+                if (_relaxState != null)
+                {
+                    _relaxState.TTL = 0;
+                }
+
+                chillMultiplier = 0f;
+            }
 
             // avoid going off the map
             accel += (avoidBorder(world.getWorldSize()) * borderMultiplier);
@@ -103,33 +132,12 @@ namespace NewFlocking.Things.LivingThings
             // try to stay in the group
             accel += (cohesion() * cohesionMultiplier);
 
-            if (_fearState == null || !states.Contains(_fearState))
-            {
-                _fearState = null;
-
-                if (velocity.Length < RELAX_SPEED)
-                {
-                    // flocking instinct reduced
-                    accel *= 0.25f;
-
-                    if (_relaxState == null)
-                    {
-                        _relaxState = new Relaxed(this.world, this);
-                        states.Add(_relaxState);
-                    }
-                }
-
                 // wander a bit
-                accel += (wander() * wanderMultiplier);
+            accel += (wander() * wanderMultiplier);
 
                 // chill out!
-                accel += (chill() * chillMultiplier);
-            }
-            else if (_relaxState != null)
-            {
-                states.Remove(_relaxState);
-                _relaxState = null; 
-            }
+            accel += (chill() * chillMultiplier);
+
 
             return accel;
         }
@@ -170,6 +178,11 @@ namespace NewFlocking.Things.LivingThings
 
                 // flockingDistance circle
                 DrawUtils.drawCircle(flockingDistance, Color.Purple);
+
+                if (velocity.X == 0)
+                {
+                    string foo = "bar";
+                }
             }
 
             GL.Color3(Color.Yellow);
