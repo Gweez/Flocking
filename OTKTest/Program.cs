@@ -94,8 +94,6 @@ namespace NewFlocking
         {
             base.OnUpdateFrame(e);
 
-            string fn = "Program.OnUpdateFrame(): ";
-
             /*****************************
              *  Mouse Handlers
              *****************************/

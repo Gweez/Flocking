@@ -170,13 +170,7 @@ namespace NewFlocking.Things
             }
             else
             {
-                // Draws thing velocity
-                //GL.Begin(BeginMode.Lines);
-                //GL.Vertex3(0, 0, 0);
-                //GL.Vertex3(velocity.X, velocity.Y, velocity.Z);
-                //GL.End();
-                
-                Quaternion rotationQuat = DrawUtils.RotationBetweenVectors(new Vector3(0,0,1), new Vector3(velocity));
+                 Quaternion rotationQuat = DrawUtils.RotationBetweenVectors(new Vector3(0,0,1), new Vector3(velocity));
 
                 Matrix4 rotation = DrawUtils.CreateFromQuaternion(rotationQuat);
 
@@ -235,8 +229,6 @@ namespace NewFlocking.Things
         /// <param name="fps">the number of frames per second</param>
         public virtual void tick(double fps) {
             string fn = "Thing.tick(): ";
-
-            //System.Consoale.WriteLine(this.GetType().Name + " id: " + id + "  location: " + location);
 
             Vector3 accel;
             float velMag;
@@ -311,27 +303,6 @@ namespace NewFlocking.Things
                 }
                 velMag = minSpeed;
             }
-            
-            // calculate direction
-            if (velMag > 0)
-            {
-                // calculate rotation from ( 0, 0, 1 )
-                yaw = (float)(Math.Acos(velocity.Z / velMag) / (Math.PI / 180));
-                if (velocity.X < 0.0)
-                {
-                    yaw *= -1.0f;
-                }
-
-
-                // ??
-                pitch = (float)(Math.Asin(velocity.Y / velMag) / (Math.PI / 180));
-
-
-               /* if (velocity.Y < 0.0)
-                {
-                    pitch *= -1.0f;
-                }*/
-            }
 
             if (!world.isPaused())
             {
@@ -365,8 +336,6 @@ namespace NewFlocking.Things
         /// </summary>
         protected void analyzeNearbyThings()
         {
-            string fn = "Thing.analyzeNearbyThings()";
-
             List<Thing> visibleThings = new List<Thing>();
             visibleFlockMates = new List<Thing>();
             avgVisibleFlockMatePosition = new Vector3(0, 0, 0);
@@ -435,7 +404,7 @@ namespace NewFlocking.Things
 
         protected virtual void runTests()
         {
-            string foo = "bar()";
+            //TODO
         }
      }
 }
