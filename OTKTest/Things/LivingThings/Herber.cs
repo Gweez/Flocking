@@ -85,13 +85,7 @@ namespace NewFlocking.Things.LivingThings
 
             // avoid collisions with flockmates
             accel = collisionAvoidance() * collisionMultiplier;
-
-            if (id == firstHerberId)
-            {
-                string foo = "bar";
-            }
-
-
+            
             // avoid nasty things
             accel += (flee() * fleeMultiplier);
 
@@ -132,10 +126,10 @@ namespace NewFlocking.Things.LivingThings
             // try to stay in the group
             accel += (cohesion() * cohesionMultiplier);
 
-                // wander a bit
+            // wander a bit
             accel += (wander() * wanderMultiplier);
 
-                // chill out!
+             // chill out!
             accel += (chill() * chillMultiplier);
 
 
@@ -165,12 +159,6 @@ namespace NewFlocking.Things.LivingThings
 
         protected override void drawModel()
         {
-            /*
-            TODO: Textures
-            glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-            glBindTexture(GL_TEXTURE_2D, texture[INDEX_HERBER_TEX]);
-            */
-
             if (id == firstHerberId)
             {
                 // sight circle
@@ -178,11 +166,6 @@ namespace NewFlocking.Things.LivingThings
 
                 // flockingDistance circle
                 DrawUtils.drawCircle(flockingDistance, Color.Purple);
-
-                if (velocity.X == 0)
-                {
-                    string foo = "bar";
-                }
             }
 
             GL.Color3(Color.Yellow);

@@ -114,29 +114,10 @@ namespace NewFlocking.Things.LivingThings
             for (int idx = 4; idx > 0; idx--)
             {
                 point = (Vector3)livingThingVerts[idx];
-                // TODO: Textures
-                /*glTexCoord2d(backHerTexCoor[idx - 1][0],
-                    backHerTexCoor[idx - 1][1]);*/
                 GL.Vertex3(point.X, point.Y, point.Z);
             }
 
             GL.End();
-
-            // Draws axes of LivingThing model
-            /*
-            GL.Begin(BeginMode.Lines);
-            GL.Vertex3(0, 0, 0);
-            GL.Vertex3(10, 0, 0);
-            GL.End();
-            GL.Begin(BeginMode.Lines);
-            GL.Vertex3(0, 0, 0);
-            GL.Vertex3(0, 10, 0);
-            GL.End();
-            GL.Begin(BeginMode.Lines);
-            GL.Vertex3(0, 0, 0);
-            GL.Vertex3(0, 0, 10);
-            GL.End();
-             */
         }
 
         private void drawFace(int faceNum, bool wireFrame)
@@ -184,15 +165,6 @@ namespace NewFlocking.Things.LivingThings
 
             GL.End();
         }
-
-        // TODO: Display Lists
-        /*private void createDisplayList()
-        {
-            int 
-
-            GL.NewList(
-        }*/
-
 
         protected Vector3 wander()
         {

@@ -71,16 +71,6 @@ namespace NewFlocking.Things.LivingThings
             float wanderMultiplier = 2.5f;
             float chillMultiplier = 1.0f;
 
-            if (id == firstBoidId)
-            {
-                // Make this dude do his own thang
-                /*borderMultiplier = 1.5f;
-                alignmentMultiplier = 0.5f;
-                cohesionMultiplier = 0.5f;
-                wanderMultiplier = 4f;
-                chillMultiplier = 0;*/
-            }
-
             // avoid collisions with flockmates
             accel = collisionAvoidance() * collisionMultiplier;
 
@@ -109,12 +99,6 @@ namespace NewFlocking.Things.LivingThings
 
         protected override void drawModel()
         {
-            /*
-            TODO: Textures
-            glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-            glBindTexture(GL_TEXTURE_2D, texture[INDEX_HERBER_TEX]);
-            */
-
             if (id == firstBoidId)
             {
                 // sight circle
@@ -122,7 +106,6 @@ namespace NewFlocking.Things.LivingThings
 
                 // flockingDistance circle
                 DrawUtils.drawCircle(flockingDistance, Color.Purple);
-
 
                 //TODO: Add to DrawUtils
                 GL.Begin(BeginMode.Lines);

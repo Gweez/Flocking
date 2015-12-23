@@ -39,7 +39,6 @@ namespace NewFlocking.Things.LivingThings
             minSpeed = 0.0f;
             minHeight = 1.5f;
 
-            // TODO: hm...
             flockingDistance = 5f;
 
             sight = 15f;
@@ -74,15 +73,8 @@ namespace NewFlocking.Things.LivingThings
             float wanderMultiplier = 4f;
             float chillMultiplier = 0.9f;
 
-
             // avoid collisions with flockmates
             accel = collisionAvoidance() * collisionMultiplier;
-
-            if (id == firstPredatorId)
-            {
-                string foo = "bar";
-            }
-
 
             // avoid going off the map
             accel += (avoidBorder(world.getWorldSize()) * borderMultiplier);
@@ -99,8 +91,7 @@ namespace NewFlocking.Things.LivingThings
             accel += (wander() * wanderMultiplier);
 
             // chill out!
-             accel += (chill() * chillMultiplier);
-
+            accel += (chill() * chillMultiplier);
 
             return accel;
         }
@@ -121,12 +112,6 @@ namespace NewFlocking.Things.LivingThings
 
         protected override void drawModel()
         {
-            /*
-            TODO: Textures
-            glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-            glBindTexture(GL_TEXTURE_2D, texture[INDEX_HERBER_TEX]);
-            */
-
             if (id == firstPredatorId)
             {
                 // sight circle
