@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 using log4net;
 
 using OpenTK;
-using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 
-using NewFlocking.Things;
-using NewFlocking.Things.LivingThings;
-using NewFlocking.Util;
+using Feesh.Things;
+using Feesh.Things.Camera;
+using Feesh.Things.LivingThings;
+using Feesh.Util;
 
-namespace NewFlocking
+namespace Feesh
 {
     /***
      * Represents the 3D world. Contains Things.
@@ -24,6 +22,7 @@ namespace NewFlocking
         private ILog log = LogManager.GetLogger( System.Reflection.MethodBase.GetCurrentMethod().DeclaringType );
 
         private List<Thing> things;
+        private Camera _camera;
         private float worldSize;
 
         private Int64 ticks;
@@ -36,44 +35,44 @@ namespace NewFlocking
         {
             log.Debug("Hello World!");
 
-            worldSize = 120;
+            worldSize = 75;
             ticks = 0;
             startTime = System.DateTime.Now;
 
             things = new List<Thing>();
 
+            things.Add(new Pillar(this, new Vector3(30, 0, -20)));
+            things.Add(new Pillar(this, new Vector3(-40, 0, 50)));
+            things.Add(new Pillar(this, new Vector3(-55, 0, -25)));
+
             for (int i = 0; i <= 100; i++)
             {
-                if (i % 2 == 0)
+                if (i % 5 == 0)
                 {
-                    things.Add(new Thing(this, new Vector3(i, 0, 0), Color.Red));
                     things.Add(new Thing(this, new Vector3(0, i, 0), Color.Green));
-                    things.Add(new Thing(this, new Vector3(0, 0, i), Color.Blue));
                 }
             }
 
-            for (int i = 0; i <= 45; i++)
+            for (int i = 0; i <= 175; i++)
             {
-                things.Add(new Herber(this));
-            }
-            
-            for (int i = 0; i <= 50; i++)
-            {
-                things.Add(new Boid(this));
+                things.Add(new Things.LivingThings.Feesh(this));
             }
 
-            things.Add(new Predator(this));
-            things.Add(new Predator(this));
-            things.Add(new Predator(this));
-
-            for (int i = 0; i <= 50; i++)
+            for (int i = 0; i <= 100; i++)
             {
-               things.Add(new FlyingInsect(this));
+                things.Add(new Sardine(this));
             }
+
+            things.Add(new Shark(this));
         }
 
         public Vector3 Gravity {
             get { return GRAVITY; }
+        }
+
+        public Camera Camera
+        {
+            get { return _camera; }
         }
 
         public void tick(double fps)
@@ -113,6 +112,12 @@ namespace NewFlocking
             things.Add(thing);
         }
 
+        public void addCamera(Camera camera)
+        {
+            _camera = camera;
+            things.Add(camera);
+        }
+
         public void drawMe()
         {
 
@@ -134,10 +139,10 @@ namespace NewFlocking
             GL.Enable(EnableCap.CullFace);
 
             GL.Light(LightName.Light0, LightParameter.Position, new Vector4(200.0f, 200.0f, 200.0f, 1.0f));
-            GL.Light(LightName.Light0, LightParameter.Ambient, new Vector4(0.5f, 0.5f, 0.5f, 1.0f));
+            GL.Light(LightName.Light0, LightParameter.Ambient, new Vector4(0.5f, 0.5f, 0.5f, 1.0f) );
 
             // Generate ground plane
-            GL.Color3(Color.ForestGreen);
+            GL.Color3(Color.SandyBrown);
             GL.Begin(BeginMode.Polygon);
             GL.Normal3(0.0, 1.0, 0.0);
             GL.Vertex3(-7000, 0.0, -7000);
@@ -146,22 +151,10 @@ namespace NewFlocking
             GL.Vertex3(7000, 0.0, -7000);
             GL.End();
 
-            Vector3 boidHeight = new Vector3(0, 40, 0);
-            Vector3 boidLowHeight = new Vector3(0, 6, 0);
-            for( double i = 20; i <= worldSize; i += 20) {
-                DrawUtils.drawCircle(i, Color.Black);
-
-                /*GL.PushMatrix();
-                GL.Translate(boidHeight);
-                DrawUtils.drawCircle(i, Color.Red);
-                GL.PopMatrix();*/
-            }
-            DrawUtils.drawCircle(worldSize, Color.Black);
-
             foreach (Thing thing in things)
             {
                 thing.drawMe();
-            }            
+            }
         }
 
         public bool isPaused()

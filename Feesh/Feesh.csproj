@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5C81F91F-EBC1-4CB2-8E02-12F90AE1D43C}</ProjectGuid>
+    <ProjectGuid>{9861893E-39E0-4CEB-92BF-8AD511CBA558}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NewFlocking</RootNamespace>
-    <AssemblyName>NewFlocking</AssemblyName>
+    <RootNamespace>Feesh</RootNamespace>
+    <AssemblyName>Feesh</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>
@@ -82,15 +82,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Things\Camera\Camera.cs" />
+    <Compile Include="Things\LivingThings\Sardine.cs" />
+    <Compile Include="Things\LivingThings\Shark.cs" />
+    <Compile Include="Things\LivingThings\Feesh.cs" />
+    <Compile Include="Things\Pillar.cs" />
     <Compile Include="Things\StateIndicators\Relaxed.cs" />
     <Compile Include="Things\StateIndicators\Fear.cs" />
     <Compile Include="Things\StateIndicators\StateIndicator.cs" />
     <Compile Include="Things\LivingThings\Boid.cs" />
-    <Compile Include="Things\LivingThings\FlyingInsect.cs" />
-    <Compile Include="Things\LivingThings\Predator.cs" />
     <Compile Include="Util\DrawUtils.cs" />
     <Compile Include="Things\Camera\FlyByCamera.cs" />
-    <Compile Include="Things\LivingThings\Herber.cs" />
     <Compile Include="Things\LivingThings\LivingThing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,7 +99,7 @@
     <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="log4net-NewFlocking.xml">
+    <Content Include="log4net-Feesh.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

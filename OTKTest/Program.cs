@@ -56,8 +56,10 @@ namespace NewFlocking
 
             log.Info(fn + "Loading...");
 
-            mouseX = Mouse.X;
-            mouseY = Mouse.Y;
+            MouseState mouse = OpenTK.Input.Mouse.GetState();
+
+            mouseX = mouse.X;
+            mouseY = mouse.Y;
 
             theWorld = new World();
 
@@ -99,13 +101,15 @@ namespace NewFlocking
             /*****************************
              *  Mouse Handlers
              *****************************/
+            MouseState mouse = OpenTK.Input.Mouse.GetState();
+
             int mouseXChange;
             int mouseYChange;
 
-            mouseXChange = mouseX - Mouse.X;
-            mouseYChange = mouseY - Mouse.Y;
-            mouseX = Mouse.X;
-            mouseY = Mouse.Y;
+            mouseXChange = mouseX - mouse.X;
+            mouseYChange = mouseY - mouse.Y;
+            mouseX = mouse.X;
+            mouseY = mouse.Y;
 
             if (mouseXChange != 0 && mouseLook)
             {

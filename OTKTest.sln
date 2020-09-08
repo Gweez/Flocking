@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTKTest", "OTKTest\OTKTest.csproj", "{5C81F91F-EBC1-4CB2-8E02-12F90AE1D43C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewFlocking", "NewFlocking\NewFlocking.csproj", "{DBF2F470-1A3E-43B5-936C-CF16FBFACC78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feesh", "Feesh\Feesh.csproj", "{9861893E-39E0-4CEB-92BF-8AD511CBA558}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DBF2F470-1A3E-43B5-936C-CF16FBFACC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBF2F470-1A3E-43B5-936C-CF16FBFACC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBF2F470-1A3E-43B5-936C-CF16FBFACC78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9861893E-39E0-4CEB-92BF-8AD511CBA558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9861893E-39E0-4CEB-92BF-8AD511CBA558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9861893E-39E0-4CEB-92BF-8AD511CBA558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9861893E-39E0-4CEB-92BF-8AD511CBA558}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

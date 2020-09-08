@@ -193,6 +193,19 @@ namespace NewFlocking.Things.LivingThings
             GL.NewList(
         }*/
 
+        protected void mate(LivingThing partner)
+        {
+            string fn = "LivingThing.mate: ";
+
+            if( this.GetType() == partner.GetType()) {
+                 // make new baby thing at same location
+            }
+            else
+            {
+                log.Error(fn + "Attempt to mate incompatable types!");
+            }
+        }
+
 
         protected Vector3 wander()
         {

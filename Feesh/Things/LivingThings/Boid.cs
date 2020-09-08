@@ -8,9 +8,9 @@ using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 
-using NewFlocking.Util;
+using Feesh.Util;
 
-namespace NewFlocking.Things.LivingThings
+namespace Feesh.Things.LivingThings
 {
     class Boid : LivingThing
     {
